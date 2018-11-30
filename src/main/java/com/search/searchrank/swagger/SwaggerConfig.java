@@ -1,4 +1,4 @@
-package com.search.searchrank.config;
+package com.search.searchrank.swagger;
 
 
 import org.springframework.context.annotation.Bean;

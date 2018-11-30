@@ -1,4 +1,4 @@
-package com.search.searchrank.config;
+package com.search.searchrank.swagger;
 
 import com.fasterxml.classmate.TypeResolver;
 import com.google.common.base.Optional;
