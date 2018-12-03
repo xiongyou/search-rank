@@ -1,22 +1,30 @@
 searchEngines:
   baidu:
-    link: www.baidu.com
+    url: www.baidu.com
     searchBox: xxx
     searchButton: xxx
+    linkPattern: xxx
+    stay: 30000
+    nextPage: xxx
   sogou:
-    link: www.sogou.com
+    url: www.sogou.com
     searchBox: xxx
     searchButton: xxx
+    linkPattern: xxxx
+    stay: 30000
+    nextPage: xxx
 proxies:
   kuaidaili:
     server: www.kuaidai.com
     charset: UTF8
-    interval: xxx
+    interval: 1
     userName: xxx
     password: xxx
+    regex: xxx
   xundaili:
     server: www.xundaili.com
     charset: UTF8
-    interval: xxx
+    interval: 1
     userName: xxx
     password: xxx
+    regex: xxx
