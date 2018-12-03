@@ -1,23 +1,19 @@
-package com.search.searchrank.domain;
+package com.search.searchrank.param;
 
-import javax.persistence.*;
 import java.util.Date;
 
 /**
- * <p> 任务表 </p>
+ * <p> 提交任务的参数 </p>
  *
- * @author 2018年11月28日 18:59
+ * @author 2018年12月03日 19:38
  * @version V1.0
  * @modificationHistory=========================逻辑或功能性重大变更记录
  * @modify by user: {修改人} ${date}
  * @modify by reason: {方法名}:{原因}
  */
-@Entity
-@Table(name ="task_info")
-public class Task {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+
+public class TaskParam {
+
     /**
      * 站点
      */
@@ -29,38 +25,19 @@ public class Task {
     /**
      * 搜索引擎
      */
-    @Column(name = "search_engine")
     private String searchEngine;
     /**
      * 开始时间
      */
-    @Column(name = "start_time")
     private Date startTime;
     /**
      * 结束时间
      */
-    @Column(name = "end_time")
     private Date endTime;
     /**
      * 优先级
      */
     private Integer privillage;
-    /**
-     * 当前排名
-     */
-    private Integer rank;
-    /**
-     * 状态，0表示初始，1表示执行中，2表示完成，-1表示失效
-     */
-    private Integer status;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getSite() {
         return site;
@@ -108,21 +85,5 @@ public class Task {
 
     public void setPrivillage(Integer privillage) {
         this.privillage = privillage;
-    }
-
-    public Integer getRank() {
-        return rank;
-    }
-
-    public void setRank(Integer rank) {
-        this.rank = rank;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }
