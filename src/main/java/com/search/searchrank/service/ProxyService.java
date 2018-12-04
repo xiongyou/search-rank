@@ -1,14 +1,15 @@
 package com.search.searchrank.service;
 
 /**
- * <p> 代理服务 </p>
+ * ip代理接口
+ * @author
  *
- * @author 2018年12月03日 19:16
- * @version V1.0
- * @modificationHistory=========================逻辑或功能性重大变更记录
- * @modify by user: {修改人} ${date}
- * @modify by reason: {方法名}:{原因}
  */
-
 public interface ProxyService {
+	
+	/**
+	 * 获取一个ip代理
+	 * @return
+	 */
+	public String getIp();
 }

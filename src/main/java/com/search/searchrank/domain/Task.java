@@ -46,6 +46,10 @@ public class Task {
      */
     private Integer privillage;
     /**
+     * 期望排名
+     */
+    private Integer expectRank;
+    /**
      * 当前排名
      */
     private Integer rank;
@@ -124,5 +128,13 @@ public class Task {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getExpectRank() {
+        return expectRank;
+    }
+
+    public void setExpectRank(Integer expectRank) {
+        this.expectRank = expectRank;
     }
 }

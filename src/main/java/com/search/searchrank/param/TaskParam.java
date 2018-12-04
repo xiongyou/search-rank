@@ -1,6 +1,7 @@
 package com.search.searchrank.param;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p> 提交任务的参数 </p>
@@ -19,13 +20,13 @@ public class TaskParam {
      */
     private String site;
     /**
-     * 关键词
+     * 关键词列表，逗号分隔
      */
-    private String keyword;
+    private List<String> keywords;
     /**
-     * 搜索引擎
+     * 搜索引擎列表，逗号分隔
      */
-    private String searchEngine;
+    private List<String> searchEngines;
     /**
      * 开始时间
      */
@@ -47,20 +48,20 @@ public class TaskParam {
         this.site = site;
     }
 
-    public String getKeyword() {
-        return keyword;
+    public List<String> getKeywords() {
+        return keywords;
     }
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
+    public void setKeywords(List<String> keywords) {
+        this.keywords = keywords;
     }
 
-    public String getSearchEngine() {
-        return searchEngine;
+    public List<String> getSearchEngines() {
+        return searchEngines;
     }
 
-    public void setSearchEngine(String searchEngine) {
-        this.searchEngine = searchEngine;
+    public void setSearchEngines(List<String> searchEngines) {
+        this.searchEngines = searchEngines;
     }
 
     public Date getStartTime() {
