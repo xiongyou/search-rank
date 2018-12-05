@@ -14,6 +14,10 @@ import org.openqa.selenium.WebDriver;
 
 public class SearchExecutor {
 
+    /**
+     * 执行排名任务，在此之前，需要设置webDriver的代理
+     * @param driver
+     */
     public void execute(WebDriver driver){
         //1.打开指定搜索网站
         //2.传入关键到搜索框
