@@ -43,6 +43,11 @@ public class Proxy {
 
     @Column(name="times")
     private Integer times;//已经使用的次数
+
+    @Column(name = "user_name")
+    private String userName;
+
+    private String password;
     /*
 	@Column(name="types")
 	private int types; //类型
@@ -120,6 +125,22 @@ public class Proxy {
 
     public void setTimes(Integer times) {
         this.times = times;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String toString(){
