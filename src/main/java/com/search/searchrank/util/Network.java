@@ -10,12 +10,38 @@ import java.io.InputStreamReader;
  *  */
 @SuppressWarnings("unused")
 public class Network {
+	/**
+	 * 检查百度是否连通
+	 * @return
+	 * @throws Exception
+	 */
+	public static boolean checkBaidu()  throws Exception{
+		return isConnect("www.baidu.com");
+	}
+
+	/**
+	 * 检查搜狗是否连通
+	 * @return
+	 * @throws Exception
+	 */
+	public static boolean checkSogou()  throws Exception{
+		return isConnect("www.sogou.com");
+	}
+
+	/**
+	 * 检查360是否连通
+	 * @return
+	 * @throws Exception
+	 */
+	public static boolean check360()  throws Exception{
+		return isConnect("www.so.com");
+	}
 
 	// 判断网络状态
-	public static boolean isConnect() throws Exception {
+	public static boolean isConnect(String website) throws Exception {
 		Runtime runtime = Runtime.getRuntime();
 		
-			Process process = runtime.exec("ping " + "www.baidu.com -n 1");
+			Process process = runtime.exec("ping " + website + " -n 1");
 			InputStream is = process.getInputStream();
 			InputStreamReader isr = new InputStreamReader(is);
 			BufferedReader br = new BufferedReader(isr);

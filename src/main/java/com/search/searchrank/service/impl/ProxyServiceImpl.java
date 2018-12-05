@@ -80,8 +80,7 @@ public class ProxyServiceImpl implements ProxyService {
                 return json.toString();
             }
 
-            List<Proxy> ipProxyList = proxyDao.readEntityByJPQL(
-                    "from IPProxy a where using=0 order by a.addTime, a.usedTime ", 0, 1, IPProxy.class);
+            List<Proxy> ipProxyList = proxyDao.findProxiesByUsingOrderByAddTime(0);
             if (ipProxyList.size() == 0) {
                 this.saveIp(this.ipList(this.getOneHtml(), proxyReg));
             } else {
@@ -114,7 +113,7 @@ public class ProxyServiceImpl implements ProxyService {
     /**
      * 获取网页内容by URL
      *
-     * @param urlString 网址
+     * @param
      * @return 网页内容
      * @throws IOException
      */

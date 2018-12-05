@@ -38,8 +38,14 @@ public class Proxy {
     @Column(name="in_use")
     private Integer using=0; //是否正在使用中
 
-    @Column(name="available")
-    private Integer available;//是否可用
+    @Column(name="available_baidu")
+    private Integer availableBaidu;//百度是否可用
+
+    @Column(name="available_360")
+    private Integer available360;//360是否可用
+
+    @Column(name="available_sogou")
+    private Integer availableSogou;//搜狗是否可用
 
     @Column(name="times")
     private Integer times;//已经使用的次数
@@ -111,12 +117,28 @@ public class Proxy {
         this.using = using;
     }
 
-    public Integer getAvailable() {
-        return available;
+    public Integer getAvailableBaidu() {
+        return availableBaidu;
     }
 
-    public void setAvailable(Integer available) {
-        this.available = available;
+    public void setAvailableBaidu(Integer availableBaidu) {
+        this.availableBaidu = availableBaidu;
+    }
+
+    public Integer getAvailable360() {
+        return available360;
+    }
+
+    public void setAvailable360(Integer available360) {
+        this.available360 = available360;
+    }
+
+    public Integer getAvailableSogou() {
+        return availableSogou;
+    }
+
+    public void setAvailableSogou(Integer availableSogou) {
+        this.availableSogou = availableSogou;
     }
 
     public Integer getTimes() {

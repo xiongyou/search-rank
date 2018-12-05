@@ -4,6 +4,8 @@ import com.search.searchrank.domain.Proxy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * <p> 代理DAO </p>
  *
@@ -14,5 +16,31 @@ import org.springframework.stereotype.Repository;
  * @modify by reason: {方法名}:{原因}
  */
 @Repository
-public interface ProxyDao extends JpaRepository<Long,Proxy> {
+public interface ProxyDao extends JpaRepository<Proxy,Long> {
+    /**
+     * 通过可用状态查询代理ip
+     * @param using
+     * @return
+     */
+    List<Proxy> findProxiesByUsingOrderByAddTime(Integer using);
+
+    /**
+     * 获取360可用的代理
+     * @param available
+     * @return
+     */
+    List<Proxy> findProxiesByAvailable360(Integer available);
+
+    /**
+     * 获取百度可用的代理
+     * @param available
+     * @return
+     */
+    List<Proxy> findProxiesByavAndAvailableBaidu(Integer available);
+    /**
+     * 获取搜狗可用的代理
+     * @param available
+     * @return
+     */
+    List<Proxy> findProxiesByavAndAvailableSogou(Integer available);
 }
