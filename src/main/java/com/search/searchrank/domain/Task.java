@@ -55,6 +55,7 @@ public class Task {
     private Integer rank;
     /**
      * 状态，0表示初始，1表示执行中，2表示完成，-1表示失效
+     * @link{com.search.searchrank.constant.TaskStatus}
      */
     private Integer status;
 

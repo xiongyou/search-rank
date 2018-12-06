@@ -7,6 +7,7 @@ import com.search.searchrank.domain.Proxy;
 import com.search.searchrank.domain.ProxyConf;
 import com.search.searchrank.service.ProxyService;
 import com.search.searchrank.util.ConfCache;
+import com.search.searchrank.util.Network;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -157,7 +158,8 @@ public class ProxyServiceImpl implements ProxyService {
             ipProxy.setAddTime(new Date());
             ipProxy.setTimes(0);
             ipProxy.setUsing(0);
-            ipProxy.setAvailable(1);
+            //ipProxy.setAvailable(1);
+            ipProxy = Network.updateProxy(ipProxy);
             proxyDao.save(ipProxy);
         }
     }
@@ -196,7 +198,8 @@ public class ProxyServiceImpl implements ProxyService {
                     ipProxy.setAddTime(new Date());
                     ipProxy.setTimes(0);
                     ipProxy.setUsing(0);
-                    ipProxy.setAvailable(1);
+                    //ipProxy.setAvailable(1);
+                    ipProxy = Network.updateProxy(ipProxy);
                     proxyDao.save(ipProxy);
                 }
             } catch (Exception e) {
