@@ -2,14 +2,12 @@ package com.search.searchrank.util;
 
 import com.search.searchrank.constant.ProxyAvailable;
 import com.search.searchrank.constant.SearchEngineConstant;
-import com.search.searchrank.dao.ProxyDao;
 import com.search.searchrank.domain.Proxy;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
 import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.commons.httpclient.methods.GetMethod;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -19,20 +17,7 @@ import java.io.InputStreamReader;
  *  
  * 
  *  */
-@SuppressWarnings("unused")
 public class Network {
-
-	/**
-	 * 静态类，通过构造函数自动注入
-	 */
-	private static ProxyDao proxyDao;
-	@Autowired
-	public Network(ProxyDao proxyDao){
-		Network.proxyDao = proxyDao;
-	}
-	public Network(){
-
-	}
 
 	/**
 	 * 对单个代理所有网站进行验证
