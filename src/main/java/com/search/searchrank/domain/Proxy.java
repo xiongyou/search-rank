@@ -32,6 +32,9 @@ public class Proxy {
     @Column(name="add_time")
     private Date addTime; //添加代理到数据库的时间
 
+    @Column(name="update_time")
+    private Date updateTime;//代理更新时间
+
     @Column(name="used_time")
     private Date usedTime; //记录上一次被使用的时间
 
@@ -163,6 +166,14 @@ public class Proxy {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public String toString(){

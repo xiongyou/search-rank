@@ -36,11 +36,19 @@ public interface ProxyDao extends JpaRepository<Proxy,Long> {
      * @param available
      * @return
      */
-    List<Proxy> findProxiesByavAndAvailableBaidu(Integer available);
+    List<Proxy> findProxiesByAvailableBaidu(Integer available);
     /**
      * 获取搜狗可用的代理
      * @param available
      * @return
      */
-    List<Proxy> findProxiesByavAndAvailableSogou(Integer available);
+    List<Proxy> findProxiesByAvailableSogou(Integer available);
+
+    /**
+     * 通过ip与端口判断是否存在
+     * @param ip
+     * @param port
+     * @return
+     */
+    Proxy findProxyByIpAndPort(String ip,Integer port);
 }

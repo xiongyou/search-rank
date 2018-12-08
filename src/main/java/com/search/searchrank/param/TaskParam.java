@@ -38,7 +38,12 @@ public class TaskParam {
     /**
      * 优先级
      */
-    private Integer privillage;
+    private Integer priority;
+
+    /**
+     * 期望排名
+     */
+    private Integer expectRank;
 
     public String getSite() {
         return site;
@@ -80,11 +85,19 @@ public class TaskParam {
         this.endTime = endTime;
     }
 
-    public Integer getPrivillage() {
-        return privillage;
+    public Integer getPriority() {
+        return priority;
     }
 
-    public void setPrivillage(Integer privillage) {
-        this.privillage = privillage;
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
+
+    public Integer getExpectRank() {
+        return expectRank;
+    }
+
+    public void setExpectRank(Integer expectRank) {
+        this.expectRank = expectRank;
     }
 }

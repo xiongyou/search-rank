@@ -44,7 +44,7 @@ public class Task {
     /**
      * 优先级
      */
-    private Integer privillage;
+    private Integer priority;
     /**
      * 期望排名
      */
@@ -107,12 +107,12 @@ public class Task {
         this.endTime = endTime;
     }
 
-    public Integer getPrivillage() {
-        return privillage;
+    public Integer getPriority() {
+        return priority;
     }
 
-    public void setPrivillage(Integer privillage) {
-        this.privillage = privillage;
+    public void setPriority(Integer priority) {
+        this.priority = priority;
     }
 
     public Integer getRank() {

@@ -1,6 +1,7 @@
 package com.search.searchrank.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.search.searchrank.constant.ProxyAvailable;
 import com.search.searchrank.dao.ProxyDao;
 import com.search.searchrank.domain.ConfEntity;
 import com.search.searchrank.domain.Proxy;
@@ -53,8 +54,33 @@ public class ProxyServiceImpl implements ProxyService {
             encode = proxyConf.getCharset();// 页面编码
             ipInterval = proxyConf.getInterval();// 再次重新获取的时间
         }
-
     }
+
+    public List<Proxy> get360Proxies(){
+        return proxyDao.findProxiesByAvailable360(ProxyAvailable.AVAILABLE.getValue());
+    }
+
+    public List<Proxy> getBaiduProxies(){
+        return proxyDao.findProxiesByAvailableBaidu(ProxyAvailable.AVAILABLE.getValue());
+    }
+
+    public List<Proxy> getSogouProxies(){
+        return proxyDao.findProxiesByAvailableSogou(ProxyAvailable.AVAILABLE.getValue());
+    }
+
+    /**
+     * 获取代理网站的代理ip
+     * @param proxyConf
+     */
+    private void crawlerProxy(ProxyConf proxyConf){
+        //打开代理网站
+        //获取代理ip
+        List<Proxy> proxyList = this.ipList(this.getOneHtml(proxyConf),proxyConf.getRegex());
+        //检查可用性
+       this.saveIp(proxyList);
+    }
+
+
 
     public synchronized String getIp() {
         // TODO Auto-generated method stub
@@ -64,7 +90,7 @@ public class ProxyServiceImpl implements ProxyService {
             // 删除
             //commonDao.executeJPQL("delete from IPProxy");
             // 重新获取并保存
-            this.saveIp(this.ipList(this.getOneHtml(), proxyReg));
+            this.saveIp(this.ipList(this.getOneHtml(new ProxyConf()), proxyReg));
             this.getProxyTime = System.currentTimeMillis();//重新为获取代理的时间赋值
         }
 
@@ -83,7 +109,7 @@ public class ProxyServiceImpl implements ProxyService {
 
             List<Proxy> ipProxyList = proxyDao.findProxiesByUsingOrderByAddTime(0);
             if (ipProxyList.size() == 0) {
-                this.saveIp(this.ipList(this.getOneHtml(), proxyReg));
+                this.saveIp(this.ipList(this.getOneHtml(new ProxyConf()), proxyReg));
             } else {
                 ipProxy = ipProxyList.get(0);
                 ipProxy.setUsedTime(new Date());
@@ -118,11 +144,11 @@ public class ProxyServiceImpl implements ProxyService {
      * @return 网页内容
      * @throws IOException
      */
-    public String getOneHtml() {
+    public String getOneHtml(ProxyConf proxyConf) {
         StringBuffer content = new StringBuffer();
         HttpURLConnection connection = null;
         try {
-            URL u = new URL(proxyUrl);
+            URL u = new URL(proxyConf.getServer());
             connection = (HttpURLConnection) u.openConnection();
             connection.setRequestMethod("GET");
             int code = connection.getResponseCode();
@@ -146,6 +172,30 @@ public class ProxyServiceImpl implements ProxyService {
             }
         }
         return content.toString();
+    }
+
+    /**
+     * 保存代理列表
+     * @param proxyList
+     */
+    public void saveIp(List<Proxy> proxyList) {
+        for (Proxy proxy: proxyList){
+            //检查代理是否存在数据库中
+            Proxy oldProxy = proxyDao.findProxyByIpAndPort(proxy.getIp(),proxy.getPort());
+            //如果存在则赋值、更新
+            if(null != oldProxy){
+                proxy = oldProxy;
+                proxy.setUpdateTime(new Date());
+            }else {
+                proxy.setAddTime(new Date());
+                proxy.setUpdateTime(proxy.getAddTime());
+                proxy.setTimes(0);
+                proxy.setUsing(0);
+            }
+            proxy = Network.updateProxy(proxy);
+            //保存
+            proxyDao.save(proxy);
+        }
     }
 
     public void saveIp(Map<String, Integer> proxyIpMap) {
@@ -224,21 +274,22 @@ public class ProxyServiceImpl implements ProxyService {
     }
 
     /**
-     * 将ip代理页面的内容进行解析，得到代理的Map
+     * 将ip代理页面的内容进行解析，得到代理ip与端口
      *
      * @param content
      * @param regex
      * @return
      */
-    public Map<String, Integer> ipList(String content, String regex) {
-
-        Map<String, Integer> proxyIpMap = new HashMap<String, Integer>();
+    public List<Proxy> ipList(String content, String regex) {
+        List<Proxy> proxyList = new ArrayList<>();
         Pattern pa = Pattern.compile(regex, Pattern.DOTALL);
         Matcher ma = pa.matcher(content);
-
         while (ma.find()) {
-            proxyIpMap.put(ma.group(1), Integer.parseInt(ma.group(2)));
+            Proxy proxy = new Proxy();
+            proxy.setIp(ma.group(1));
+            proxy.setPort( Integer.parseInt(ma.group(2)));
+            proxyList.add(proxy);
         }
-        return proxyIpMap;
+        return proxyList;
     }
 }
